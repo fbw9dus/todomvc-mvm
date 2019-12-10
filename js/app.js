@@ -80,11 +80,6 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
       //   '.clear-completed',
       //   this.destroyCompleted.bind(this)
       // );
-<<<<<<< HEAD
-      var newTodo = document.querySelector(".new-todo").addEventListener('keyup',this.create.bind(this))
-      var newToggleAll = document.querySelector(".toggle-all").addEventListener('chane',this.toggleAll.bind(this))
-      var newFooter = document.querySelector(".footer").querySelector(".clear-completed").addEventListener('click'.destroyCompleted.bind(this))
-=======
        document.querySelector('.new-todo').addEventListener('keyup', this.create.bind(this))
      var newToggleAll= document.querySelector('.toggle-all')
       .addEventListener('change', this.toggleAll.bind(this))
@@ -92,16 +87,12 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
       delegateEvent(newFooter, 'click', '.clear-completed', this.destroyCompleted.bind(this))
       
      
->>>>>>> 0115ef113888e7b613398437ea0af60f35563830
     //   $('.todo-list')
     //     .on('change', '.toggle', this.toggle.bind(this))
     //     .on('dblclick', 'label', this.editingMode.bind(this))
     //     .on('keyup', '.edit', this.editKeyup.bind(this))
     //     .on('focusout', '.edit', this.update.bind(this))
     //     .on('click', '.destroy', this.destroy.bind(this));
-<<<<<<< HEAD
-    // },
-=======
  var newTodoList = document.querySelector('.todo-list')
 delegateEvent(newTodoList, 'change', '.toggle', this.toggle.bind(this))
 delegateEvent(newTodoList, 'dblclick', 'label', this.editingMode.bind(this))
@@ -112,7 +103,6 @@ delegateEvent(newTodoList, 'click', '.destroy',this.destroy.bind(this))
 
 
     
->>>>>>> 0115ef113888e7b613398437ea0af60f35563830
     render: function() {
       var todos = this.getFilteredTodos();
       var newTodoList = document.querySelector('.todo-list')
