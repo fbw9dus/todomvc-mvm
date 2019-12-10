@@ -52,12 +52,16 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
       }
     }
   };
+  var newTodoList 
+
+
+
 
   var App = {
     init: function() {
       this.todos = util.store('todos-jquery');
-      this.todoTemplate = Handlebars.compile($('#todo-template').html());
-      this.footerTemplate = Handlebars.compile($('#footer-template').html());
+      this.todoTemplate = Handlebars.compile(document.querySelector('#todo-template').innerHTML);
+      this.footerTemplate = Handlebars.compile(document.querySelector('#footer-template').innerHTML);
       this.bindEvents();
 
       new Router({
@@ -67,6 +71,7 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
         }.bind(this)
       }).init('/all');
     },
+    
     bindEvents: function() {
       // $('.new-todo').on('keyup', this.create.bind(this));
       // $('.toggle-all').on('change', this.toggleAll.bind(this));
@@ -75,23 +80,50 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
       //   '.clear-completed',
       //   this.destroyCompleted.bind(this)
       // );
+<<<<<<< HEAD
       var newTodo = document.querySelector(".new-todo").addEventListener('keyup',this.create.bind(this))
       var newToggleAll = document.querySelector(".toggle-all").addEventListener('chane',this.toggleAll.bind(this))
       var newFooter = document.querySelector(".footer").querySelector(".clear-completed").addEventListener('click'.destroyCompleted.bind(this))
+=======
+       document.querySelector('.new-todo').addEventListener('keyup', this.create.bind(this))
+     var newToggleAll= document.querySelector('.toggle-all')
+      .addEventListener('change', this.toggleAll.bind(this))
+      var newFooter = document.querySelector('.footer')
+      delegateEvent(newFooter, 'click', '.clear-completed', this.destroyCompleted.bind(this))
+      
+     
+>>>>>>> 0115ef113888e7b613398437ea0af60f35563830
     //   $('.todo-list')
     //     .on('change', '.toggle', this.toggle.bind(this))
     //     .on('dblclick', 'label', this.editingMode.bind(this))
     //     .on('keyup', '.edit', this.editKeyup.bind(this))
     //     .on('focusout', '.edit', this.update.bind(this))
     //     .on('click', '.destroy', this.destroy.bind(this));
+<<<<<<< HEAD
     // },
+=======
+ var newTodoList = document.querySelector('.todo-list')
+delegateEvent(newTodoList, 'change', '.toggle', this.toggle.bind(this))
+delegateEvent(newTodoList, 'dblclick', 'label', this.editingMode.bind(this))
+delegateEvent(newTodoList, 'keyup', '.edit',this.editKeyup.bind(this))
+delegateEvent(newTodoList, 'focusout', '.edit',this.update.bind(this))
+delegateEvent(newTodoList, 'click', '.destroy',this.destroy.bind(this))
+     },
+
+
+    
+>>>>>>> 0115ef113888e7b613398437ea0af60f35563830
     render: function() {
       var todos = this.getFilteredTodos();
-      $('.todo-list').html(this.todoTemplate(todos));
-      $('.main').toggle(todos.length > 0);
-      $('.toggle-all').prop('checked', this.getActiveTodos().length === 0);
+      var newTodoList = document.querySelector('.todo-list')
+      newTodoList.innerHTML= (this.todoTemplate(todos));
+     
+     if(todos.length > 0){document.querySelector('.main').style.display="block"}
+     else{document.querySelector('.main').style.display="none"}
+     
+     document.querySelector('.toggle-all').checked=( this.getActiveTodos().length === 0);
       this.renderFooter();
-      $('.new-todo').focus();
+      document.querySelector('.new-todo').focus();
       util.store('todos-jquery', this.todos);
     },
     renderFooter: function() {
@@ -104,15 +136,20 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
         filter: this.filter
       });
 
-      $('.footer')
-        .toggle(todoCount > 0)
-        .html(template);
+     var qwe= document.querySelector('.footer')
+     if(todoCount > 0){qwe.style.display="block"}
+     else{qwe.style.display="none"}
+        
+        qwe.innerHTML= (template);
     },
     toggleAll: function(e) {
-      var isChecked = $(e.target).prop('checked');
-
+      //var isChecked = $(e.target).prop('checked');
+       var isChecked =(e.target.checked ) 
+       
+        
       this.todos.forEach(function(todo) {
         todo.completed = isChecked;
+       
       });
 
       this.render();
@@ -145,9 +182,13 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
     // accepts an element from inside the `.item` div and
     // returns the corresponding index in the `todos` array
     getIndexFromEl: function(el) {
-      var id = $(el)
-        .closest('li')
-        .data('id');
+      // var id = $(el)
+      //   .closest('li')
+      //   .data('id');
+      var id =el
+      .closest('li')
+      .getAttribute('data-id')
+   
       var todos = this.todos;
       var i = todos.length;
 
@@ -158,8 +199,10 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
       }
     },
     create: function(e) {
-      var $input = $(e.target);
-      var val = $input.val().trim();
+     // var $input = $(e.target);
+     var input = e.target;
+     // var val = $input.val().trim();
+     var val = input.value.trim()
 
       if (e.which !== ENTER_KEY || !val) {
         return;
@@ -171,7 +214,8 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
         completed: false
       });
 
-      $input.val('');
+     // $input.val('');
+     input.value=''
 
       this.render();
     },
@@ -181,15 +225,21 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
       this.render();
     },
     editingMode: function(e) {
-      var $input = $(e.target)
-        .closest('li')
-        .addClass('editing')
-        .find('.edit');
+     // var $input = $(e.target)
+var input = e.target
+        input.closest('li')
+        .classList.add('editing')
+        //.find('.edit');
+       e.target.querySelectorAll('li .edit')
       // puts caret at end of input
-      var tmpStr = $input.val();
-      $input.val('');
-      $input.val(tmpStr);
-      $input.focus();
+      // var tmpStr = $input.val();
+      // $input.val('');
+      // $input.val(tmpStr);
+      // $input.focus();
+      var tmpStr = input.value;
+      input.value=''
+      input.value=tmpStr;
+      input.focus()
     },
     editKeyup: function(e) {
       if (e.which === ENTER_KEY) {
@@ -197,18 +247,20 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
       }
 
       if (e.which === ESCAPE_KEY) {
-        $(e.target)
-          .data('abort', true)
-          .blur();
+        // $(e.target)
+       
+        e.target.setAttribute('data-id',true)
+          e.target.blur();
+        
       }
     },
     update: function(e) {
       var el = e.target;
-      var $el = $(el);
-      var val = $el.val().trim();
+      var el = el;
+      var val = el.value.trim();
 
-      if ($el.data('abort')) {
-        $el.data('abort', false);
+      if (el.getAttribute('data-id')) {
+        el.setAttribute('data-id', false);
       } else if (!val) {
         this.destroy(e);
         return;
@@ -225,4 +277,4 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
   };
 
   App.init();
-});
+})();

@@ -3,8 +3,27 @@
   "dependencies": {
     "director": "~1.2.2",
     "handlebars": "~2.0.0",
+    "init": "^0.1.2",
     "jquery": "~2.1.1",
     "todomvc-app-css": "^2.1.0",
     "todomvc-common": "~1.0.1"
-  }
+  },
+  "name": "sdsd",
+  "description": "Diese ToDo-App wurde mit jQuery und Handlebars gemacht. Aber sie hat Kompatibilitäts- und Performance-Probleme, deshalb:",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fbw9dus/todomvc-mvm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fbw9dus/todomvc-mvm/issues"
+  },
+  "homepage": "https://github.com/fbw9dus/todomvc-mvm#readme"
 }
