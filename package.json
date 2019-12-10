@@ -4,7 +4,7 @@
     "director": "~1.2.2",
     "handlebars": "~2.0.0",
     "init": "^0.1.2",
-    "jquery": "~2.1.1",
+    "jquery": "~3.4.0",
     "todomvc-app-css": "^2.1.0",
     "todomvc-common": "~1.0.1"
   },
