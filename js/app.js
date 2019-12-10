@@ -12,7 +12,7 @@ function delegateEvent(fromElement, eventName, targetSelector, callback) {
 }
 
 /*global jQuery, Handlebars, Router */
-jQuery(function($) {
+(function() {
   'use strict';
 
   Handlebars.registerHelper('eq', function(a, b, options) {
@@ -68,20 +68,23 @@ jQuery(function($) {
       }).init('/all');
     },
     bindEvents: function() {
-      $('.new-todo').on('keyup', this.create.bind(this));
-      $('.toggle-all').on('change', this.toggleAll.bind(this));
-      $('.footer').on(
-        'click',
-        '.clear-completed',
-        this.destroyCompleted.bind(this)
-      );
-      $('.todo-list')
-        .on('change', '.toggle', this.toggle.bind(this))
-        .on('dblclick', 'label', this.editingMode.bind(this))
-        .on('keyup', '.edit', this.editKeyup.bind(this))
-        .on('focusout', '.edit', this.update.bind(this))
-        .on('click', '.destroy', this.destroy.bind(this));
-    },
+      // $('.new-todo').on('keyup', this.create.bind(this));
+      // $('.toggle-all').on('change', this.toggleAll.bind(this));
+      // $('.footer').on(
+      //   'click',
+      //   '.clear-completed',
+      //   this.destroyCompleted.bind(this)
+      // );
+      var newTodo = document.querySelector(".new-todo").addEventListener('keyup',this.create.bind(this))
+      var newToggleAll = document.querySelector(".toggle-all").addEventListener('chane',this.toggleAll.bind(this))
+      var newFooter = document.querySelector(".footer").querySelector(".clear-completed").addEventListener('click'.destroyCompleted.bind(this))
+    //   $('.todo-list')
+    //     .on('change', '.toggle', this.toggle.bind(this))
+    //     .on('dblclick', 'label', this.editingMode.bind(this))
+    //     .on('keyup', '.edit', this.editKeyup.bind(this))
+    //     .on('focusout', '.edit', this.update.bind(this))
+    //     .on('click', '.destroy', this.destroy.bind(this));
+    // },
     render: function() {
       var todos = this.getFilteredTodos();
       $('.todo-list').html(this.todoTemplate(todos));
