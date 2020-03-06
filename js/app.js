@@ -216,6 +216,7 @@ delegateEvent(newTodoList, 'click', '.destroy',this.destroy.bind(this))
     },
     editingMode: function(e) {
      // var $input = $(e.target)
+     console.log(e.target)
 var input = e.target
         input.closest('li')
         .classList.add('editing')
@@ -233,6 +234,7 @@ var input = e.target
     },
     editKeyup: function(e) {
       if (e.which === ENTER_KEY) {
+       
         e.target.blur();
       }
 
